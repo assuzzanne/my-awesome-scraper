@@ -1,0 +1,14 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "A program scraping an html file and generating a json file",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aude Rouaux",
+  "license": "ISC",
+  "dependencies": {
+    "jsonframe-cheerio": "^3.0.1"
+  }
+}
