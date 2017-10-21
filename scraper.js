@@ -17,18 +17,15 @@ var $ = cheerio.load(html);
 
 //get data from the html page
 function getCode($){
-  var code = $('.block-pnr').find('.pnr-ref .pnr-info').last().text().trim();
-  return code;
+  return $('.block-pnr').find('.pnr-ref .pnr-info').last().text().trim();
 }
 
 function getName($){
-  var name = $('.block-pnr').find('.pnr-name .pnr-info').last().text().trim();
-  return name;
+  return $('.block-pnr').find('.pnr-name .pnr-info').last().text().trim();
 }
 
 function getTotalPrice($){
-  var price = $('.total-amount').find('.very-important').text().replace(',','.').replace('€','').trim();
-  return price;
+  return $('.total-amount').find('.very-important').text().replace(',','.').replace('€','').trim();
 }
 
 function getPassengers($) {
