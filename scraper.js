@@ -1,6 +1,5 @@
 //module dependencies
 var express = require('express');
-var fs = require('fs');
 var request = require('request');
 var path = require ('path');
 
@@ -16,19 +15,19 @@ html = html.replace(/\\r\\n|\\/g, '');
 var $ = cheerio.load(html);
 
 //get data from the html page
-function getCode($){
+function getCode(){
   return $('.block-pnr').find('.pnr-ref .pnr-info').last().text().trim();
 }
 
-function getName($){
+function getName(){
   return $('.block-pnr').find('.pnr-name .pnr-info').last().text().trim();
 }
 
-function getTotalPrice($){
+function getTotalPrice(){
   return $('.total-amount').find('.very-important').text().replace(',','.').replace('€','').trim();
 }
 
-function getPassengers($) {
+function getPassengers() {
   passengers = [];
 
   $('.typology').each(function(i, elem) {
@@ -44,7 +43,7 @@ function getPassengers($) {
   return passengers;
 } 
 
-function getRoundTrips($) {
+function getRoundTrips() {
   var RoundTrips = [];
  
   $('.product-details').each(function(i, elem) {
@@ -60,7 +59,7 @@ function getRoundTrips($) {
   
     if (i == 3) {
       trains.passengers = [];
-      trains.passengers = getPassengers($);
+      trains.passengers = getPassengers();
     };
 
     RoundTrips.push({
@@ -72,7 +71,7 @@ function getRoundTrips($) {
   return RoundTrips;
 }
 
-function getPrices($){
+function getPrices(){
   var prices = [];
 
   $('.cell').each(function(i, elem){   
@@ -98,16 +97,16 @@ var json = {
   "result": {
     "trips": [
       {
-        "code": getCode($),
-        "name": getName($),
+        "code": getCode(),
+        "name": getName(),
         "details": {
-          "price": getTotalPrice($),
-          "roundTrips": getRoundTrips($)
+          "price": getTotalPrice(),
+          "roundTrips": getRoundTrips()
         },
       },
     ],
     "custom": {
-      "prices": getPrices($)
+      "prices": getPrices()
     }  
   }
 };
